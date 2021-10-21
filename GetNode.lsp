@@ -15,8 +15,8 @@
   (setq x4 (- x0 (* (/ (- y2 y1) d) h)))
   (setq y4 (+ y0 (* (/ (- x2 x1) d) h)))
   (if (< (distance (list x3 y3) pointr) (distance (list x4 y4) pointr))
-    (setq point3 (list x3 y3))
-    (setq point3 (list x4 y4))
+    (setq point3 (list x3 y3)
+	  point3 (list x4 y4))
     )
   (setq le (entmakex
 	     '(
