@@ -31,6 +31,7 @@
   )
 
 
+
 (defun C:getNode(/)
   (setq point1 (entget (car (entsel "\nВыберите точку 1:"))))
   (while point1
