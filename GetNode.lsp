@@ -34,6 +34,7 @@
   (setq point1 (entget (car (entsel "\nВыберите точку 1:"))))
   (while point1
     (setq point1 (cdr (assoc 10 point1)))
+    
     (setq r1s (entget (car (entsel "\nВыберите расстояние:"))))
     (setq r1 (atof (cdr (assoc 1 r1s))))
     (setq point2 (entget (car (entsel "\nВыберите точку 2:"))))
