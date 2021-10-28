@@ -1,3 +1,7 @@
+; РџРѕСЃС‚РѕРµРЅРёРµ С‚СЂРµС‚СЊРµР№ С‚РѕС‡РєРё РїРѕ РґРІСѓРј РёР·РІРµСЃС‚РЅС‹Рј С‚РѕС‡РєР°Рј
+; Р»РµР¶Р°С‰РµР№ РЅР° Р·Р°РґР°РЅРЅРѕРј СЂР°СЃСЃС‚РѕСЏРЅРёРё РѕС‚ РґРІСѓС… РёР·РІРµСЃС‚РЅС‹С… С‚РѕС‡РµРє
+; Michael 2021
+
 (defun intsCir(point1 point2 pointr r1 r2 / point3)
   (setq d (distance point1 point2)) ; distance between points
   (setq x1 (nth 0 point1); execute
@@ -31,19 +35,18 @@
   )
 
 (defun C:getNode(/)
-  (setq point1 (entget (car (entsel "\nВыберите точку 1:"))))
+  (setq point1 (entget (car (entsel "\nР’С‹Р±РµСЂРёС‚Рµ С‚РѕС‡РєСѓ 1:"))))
   (while point1
     (setq point1 (cdr (assoc 10 point1)))
-    
-    (setq r1s (entget (car (entsel "\nВыберите расстояние:"))))
+    (setq r1s (entget (car (entsel "\nР’С‹Р±РµСЂРёС‚Рµ СЂР°СЃСЃС‚РѕСЏРЅРёРµ:"))))
     (setq r1 (atof (cdr (assoc 1 r1s))))
-    (setq point2 (entget (car (entsel "\nВыберите точку 2:"))))
+    (setq point2 (entget (car (entsel "\nР’С‹Р±РµСЂРёС‚Рµ С‚РѕС‡РєСѓ 2:"))))
     (setq point2 (cdr (assoc 10 point2)))
-    (setq r2s (entget (car (entsel "\nВыберите расстояние:"))))
+    (setq r2s (entget (car (entsel "\nР’С‹Р±РµСЂРёС‚Рµ СЂР°СЃСЃС‚РѕСЏРЅРёРµ:"))))
     (setq r2 (atof (cdr (assoc 1 r2s))))
-    (setq pointr (getpoint point2 "\nВыбрать направление:"))
+    (setq pointr (getpoint point2 "\nР’С‹Р±СЂР°С‚СЊ РЅР°РїСЂР°РІР»РµРЅРёРµ:"))
     (setq pointr (list (nth 0 pointr) (nth 1 pointr)))
     (print (intsCir point1 point2 pointr r1 r2))
-    (setq point1 (entget (car (entsel "\nВыберите точку 1:"))))
+    (setq point1 (entget (car (entsel "\nР’С‹Р±РµСЂРёС‚Рµ С‚РѕС‡РєСѓ 1:"))))
     )
   )
