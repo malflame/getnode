@@ -7,31 +7,29 @@
 	)
   (setq a (/ (+ (- (expt r2 2) (expt r1 2)) (expt d 2)) (* d 2))); find distance on line(point1-point2) between "POINT2" and point, which intersect circle2
   (setq b (- d a)); find distance on line(point1-point2) between "POINT1" and point, which intersect circle1
-  (setq x0 (+ (* (/ b d) (- x2 x1)) x1 ) ) ;// find coordinates 
-  (setq y0 (+ (* (/ b d) (- y2 y1)) y1 ) ) ;// for POINT0
+  (setq x0 (+ (* (/ b d) (- x2 x1)) x1 )  ;// find coordinates
+	y0 (+ (* (/ b d) (- y2 y1)) y1 )) ;// for POINT0
   (setq h (sqrt (- (expt r2 2) (expt a 2)))); find distance between POINT1 and POINT0
-  (setq x3 (+ x0 (* (/ (- y2 y1) d) h)))
-  (setq y3 (- y0 (* (/ (- x2 x1) d) h)))
-  (setq x4 (- x0 (* (/ (- y2 y1) d) h)))
-  (setq y4 (+ y0 (* (/ (- x2 x1) d) h)))
+  (setq x3 (+ x0 (* (/ (- y2 y1) d) h))
+	y3 (- y0 (* (/ (- x2 x1) d) h))
+	x4 (- x0 (* (/ (- y2 y1) d) h))
+	y4 (+ y0 (* (/ (- x2 x1) d) h)))
+  
   (if (< (distance (list x3 y3) pointr) (distance (list x4 y4) pointr))
     (setq point3 (list x3 y3)
 	  point3 (list x4 y4))
     )
-  (setq le (entmakex
-	     '(
-	       (0 . "POINT")
-	       (8 . "0")
-	       (10 0.0 0.0 0.0)
-	       (62 . 5)
-	      )
-	     )
+  (setq le (entmakex '((0 . "POINT")
+		       (8 . "0")
+		       (10 0.0 0.0 0.0)
+		       (62 . 5) )
+		     )
 	)
   (setq ob (entget le))
   (setq ob (subst (list 10 (nth 0 point3) (nth 1 point3) 0.0) (assoc 10 ob) ob))
-  (entmod ob)
-  (entupd le)  
+  (entmod ob) (entupd le)
   )
+
 
 (defun C:getNode(/)
   (setq point1 (entget (car (entsel "\nВыберите точку 1:"))))
